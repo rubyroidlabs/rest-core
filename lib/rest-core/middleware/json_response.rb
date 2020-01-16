@@ -9,7 +9,7 @@ module RestCore
     class ParseError < Json.const_get(:ParseError)
       attr_reader :cause, :body
       def initialize cause, body
-        msg = cause.message.force_encoding('utf-8')
+        msg = cause.message.dup.force_encoding('utf-8')
         super("#{msg}\nOriginal text: #{body}")
         @cause, @body = cause, body
       end
